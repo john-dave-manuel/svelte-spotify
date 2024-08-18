@@ -33,7 +33,9 @@ export const actions: Actions = {
 		const res = await fetch(`${SPOTIFY_BASE_URL}/playlists/${playlist}/tracks`, {
 			method: 'DELETE',
 			body: JSON.stringify({
-				uris: [`spotify:track:${track}`]
+				tracks: [
+					{ uri: `spotify:track:${track}` },
+				]
 			}),
 			headers: {
 				Authorization: `Bearer ${cookies.get('access_token')}`

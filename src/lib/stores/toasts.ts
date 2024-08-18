@@ -32,6 +32,7 @@ function createToastsStore() {
 	function removeToast(id: string) {
 		update((toasts) => toasts.filter((t) => t.id !== id));
 	}
+	
 	return {
 		subscribe,
 		info: (message: string, timeout?: number) =>

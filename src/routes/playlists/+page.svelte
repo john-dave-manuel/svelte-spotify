@@ -31,7 +31,7 @@
 </script>
 
 <div class="content">
-	{#if playlists.items.length > 0}
+	{#if playlists?.items?.length > 0}
 		<div class="title">
 			<h1>{data.title}</h1>
 			<Button

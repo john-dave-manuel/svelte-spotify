@@ -8,7 +8,7 @@ export const load: PageLoad = async ({ fetch, params, depends, route }) => {
 	const searchParams = new URLSearchParams({
 		q: query,
 		type: 'album,artist,playlist',
-		limit: '6'
+		limit: '12'
 	}).toString();
 
 	const resultsRes = await fetchRefresh(fetch, `/api/spotify/search?${searchParams}`);

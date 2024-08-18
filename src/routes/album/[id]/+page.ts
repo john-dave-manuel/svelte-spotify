@@ -3,6 +3,9 @@ import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ fetch, params, depends, route }) => {
+	// USE IN ERROR.SVELTE TO INVALIDATE 
+	// SO THIS LOAD FUNCTION WILL RUN AGAIN 
+	// ie. if album page is error and click try again
 	depends(`app:${route.id}`);
 	const albumRes = await fetchRefresh(fetch, `/api/spotify/albums/${params.id}`);
 

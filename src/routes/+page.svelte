@@ -25,6 +25,15 @@
 				items: data.featuredPlaylists.playlists.items
 			});
 		}
+
+		if (data.userPlaylists) {
+			sections.push({
+				title: 'Your Playlists',
+				path: '/playlists',
+				items: data.userPlaylists.items
+			});
+		}
+
 		data.homeCategories.forEach((category, index) => {
 			const categoryPlaylist = data.categoriesPlaylists[index];
 			if (categoryPlaylist) {
@@ -35,13 +44,6 @@
 				});
 			}
 		});
-		if (data.userPlaylists) {
-			sections.push({
-				title: 'Your Playlists',
-				path: '/playlists',
-				items: data.userPlaylists.items
-			});
-		}
 	}
 </script>
 
