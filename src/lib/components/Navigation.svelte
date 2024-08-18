@@ -180,11 +180,9 @@
 			width: 130px;
 		}
 		.nav-content-inner {
-			// padding: 20px;
-			min-width: var(--sidebar-width);
+			max-width: var(--sidebar-width);
 			background-color: var(--sidebar-color);
 			height: 100vh;
-			// overflow: auto;
 			display: none;
 			.logo-and-menu {
 				padding: 20px 20px 0;

@@ -23,8 +23,8 @@ export const load: PageLoad = async ({ fetch: _fetch, params, parent, depends, r
 	}
 
 	const [albumsRes, appearsOnRes, topTracksRes, relatedArtistsRes, colorRes] = await Promise.all([
-		fetch(`/api/spotify/artists/${params.id}/albums?limit=6&include_groups=album,single`),
-		fetch(`/api/spotify/artists/${params.id}/albums?limit=6&include_groups=appears_on`),
+		fetch(`/api/spotify/artists/${params.id}/albums?limit=12&include_groups=album,single`),
+		fetch(`/api/spotify/artists/${params.id}/albums?limit=12&include_groups=appears_on`),
 		fetch(`/api/spotify/artists/${params.id}/top-tracks?market=${user?.country}`),
 		fetch(`/api/spotify/artists/${params.id}/related-artists`),
 		colorReq

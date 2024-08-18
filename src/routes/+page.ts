@@ -14,7 +14,7 @@ export const load: PageLoad = async ({ fetch: _fetch, parent }) => {
 		: undefined;
 
 	const randomCats = catsResJSON
-		? catsResJSON.categories.items.sort(() => 0.5 - Math.random()).slice(0, 3)
+		? catsResJSON.categories.items.sort(() => 0.5 - Math.random())
 		: [];
 
 	const randomCatsPromises = randomCats.map((cat) =>

@@ -11,7 +11,7 @@
 </script>
 
 <div class="card {item.type}">
-	{#if item.images.length > 0}
+	{#if item.images?.length > 0}
 		<img loading="lazy" src={item.images[0].url} alt="{item.type} cover for {item.name}" />
 	{:else}
 		<div class="cover-placeholder">
@@ -38,9 +38,10 @@
 		border-radius: 4px;
 		transition: background 0.3s;
 		position: relative;
-		&.artist {
+		&:global(.artist) {
 			text-align: center;
 			padding: 30px 20px;
+
 			img,
 			.cover-placeholder {
 				width: 150px;
@@ -97,7 +98,7 @@
 		}
 		img {
 			width: 100%;
-			aspect-ratio: 1;
+			aspect-ratio: 1 / 1;
 			object-fit: cover;
 			margin: 0 0 20px;
 		}

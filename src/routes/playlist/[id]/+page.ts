@@ -8,7 +8,7 @@ export const load: PageLoad = async ({ fetch: _fetch, params, depends, route, ur
 
 	const fetch = (path: string) => fetchRefresh(_fetch, path);
 
-	const limit = 100;
+	const limit = 10;
 	const page = url.searchParams.get('page');
 
 	const [playlistRes, isFollowingRes] = await Promise.all([
@@ -48,7 +48,7 @@ export const load: PageLoad = async ({ fetch: _fetch, params, depends, route, ur
 	}
 
 	let color = null;
-	if (playlistResJSON.images.length > 0) {
+	if (playlistResJSON.images?.length > 0) {
 		const colorRes = await fetch(
 			`/api/average-color?${new URLSearchParams({
 				image: playlistResJSON.images[0].url

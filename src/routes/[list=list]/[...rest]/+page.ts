@@ -8,6 +8,7 @@ export const load: PageLoad = async ({ params, fetch: _fetch, url, depends, rout
 	depends(`app:${route.id}`);
 
 	const { list, rest } = params;
+
 	const limit = 18;
 	const page = url.searchParams.get('page');
 
@@ -19,20 +20,27 @@ export const load: PageLoad = async ({ params, fetch: _fetch, url, depends, rout
 	let request;
 	let title;
 
+	// section/new-releases
 	if (list === 'section' && rest === 'new-releases') {
 		request = fetch(`/api/spotify/browse/new-releases?${searchParams}`);
 		title = 'New Releases';
+	// section/featured-playlists
 	} else if (list === 'section' && rest === 'featured-playlists') {
 		request = fetch(`/api/spotify/browse/featured-playlists?${searchParams}`);
 		title = 'Featured Playlists';
+	// category/[id]
 	} else if (list === 'category') {
 		request = fetch(`/api/spotify/browse/categories/${rest}/playlists?${searchParams}`);
 		const catInfo = await fetch(`/api/spotify/browse/categories/${rest}`);
 		const catInfoJSON: SpotifyApi.CategoryObject = catInfo.ok ? await catInfo.json() : undefined;
 		title = catInfoJSON ? `${catInfoJSON.name} Playlists` : 'Playlists';
+	// profile/following
 	} else if (list === 'profile' && rest === 'following') {
 		request = await fetch(`/api/spotify/me/following?type=artist&${searchParams}`);
 		title = 'Following';
+	// artist/[id]/albums
+	// artist/[id]/appears-on
+	// artist/[id]/related-artists
 	} else if (list === 'artist') {
 		const artistID = rest.split('/')[0];
 		const dataType = rest.split('/')[1];
@@ -88,13 +96,23 @@ export const load: PageLoad = async ({ params, fetch: _fetch, url, depends, rout
 			if ('items' in resJSON.artists) {
 				return resJSON.artists;
 			} else {
+				// related-artists (has no pagination)
 				return { items: resJSON.artists };
 			}
 		}
 	};
+
+	console.group("List route");
+	console.log("🚀 ~ load:PageLoad= ~ list:", list)
+	console.log("🚀 ~ load:PageLoad= ~ rest:", rest)
+	console.log("🚀 ~ load:PageLoad= ~ resJSON:", resJSON)
+	console.log("🚀 ~ getData:", getData())
+	console.groupEnd();
 
 	return {
 		data: getData(),
 		title
 	};
 };
+	
+

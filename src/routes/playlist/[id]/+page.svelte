@@ -52,7 +52,7 @@
 
 <ItemPage
 	title={playlist.name}
-	image={playlist.images.length > 0 ? playlist.images[0].url : undefined}
+	image={playlist.images?.length > 0 ? playlist.images[0].url : undefined}
 	{color}
 	type={playlist.type}
 >
@@ -83,12 +83,20 @@
 				action={`?/${isFollowing ? 'unFollowPlaylist' : 'followPlaylist'}`}
 				use:enhance={() => {
 					isLoadingFollow = true;
+					// WE CAN ALSO USE UPDATE HERE TO INVALIDATE
+					// MAKING THE PAGE LIKE TO LOAD AGAIN
+					// return ({ update }) => {
+					// 	isLoadingFollow = false;
+					// 	update();
+					// }
 					return async ({ result }) => {
 						isLoadingFollow = false;
+						// console.log(result);
 
 						if (result.type === 'success') {
 							await applyAction(result);
 							isFollowing = !isFollowing;
+							toasts.info(isFollowing ? 'Following' : 'Unfollowed');
 						} else if (result.type === 'failure') {
 							toasts.error(result.data?.followError);
 							await tick();
@@ -126,6 +134,7 @@
 			title={playlist.name}
 			total={playlist.tracks.total}
 		/>
+		<!-- TODO: ADD PAGINATION COMPONENT HERE -->
 		{#if tracks.next}
 			<div class="load-more">
 				<Button element="button" variant="outline" disabled={isLoading} on:click={loadMoreTracks}

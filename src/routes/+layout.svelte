@@ -54,6 +54,7 @@
 	<a href="#main-content" class="skip-link">Skip to Content</a>
 {/if}
 
+<!-- DISPLAY ALL TOASTS IN THE STORE -->
 <Toasts />
 
 <div id="main">
@@ -62,6 +63,7 @@
 			<Navigation desktop={true} {userAllPlaylists} />
 		</div>
 	{/if}
+	<!-- STATUS: ADD TRACK TO A OWNED PLAYLIST -->
 	<div id="content">
 		{#if hasError || hasSuccess}
 			<div class="message" role="status" class:error={hasError} class:success={hasSuccess}>

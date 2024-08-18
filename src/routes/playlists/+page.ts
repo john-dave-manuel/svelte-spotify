@@ -3,7 +3,7 @@ import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ fetch, url }) => {
-	const limit = 18;
+	const limit = 12;
 	const page = url.searchParams.get('page');
 
 	const searchParams = new URLSearchParams({
