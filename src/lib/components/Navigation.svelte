@@ -88,7 +88,7 @@
 			class="overlay"
 			on:click={closeMenu}
 			on:keyup={handleEscape}
-			transition:fade={{ duration: 200 }}
+			transition:fade|global={{ duration: 200 }}
 		/>
 	{/if}
 	<nav aria-label="Main">

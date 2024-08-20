@@ -11,7 +11,7 @@ export const load: PageLoad = async ({ fetch, params }) => {
 	);
 
 	if (!playlistRes.ok) {
-		throw error(playlistRes.status, 'Failed to load playlist!');
+		error(playlistRes.status, 'Failed to load playlist!');
 	}
 
 	const playlistJSON: SpotifyApi.SinglePlaylistResponse = await playlistRes.json();

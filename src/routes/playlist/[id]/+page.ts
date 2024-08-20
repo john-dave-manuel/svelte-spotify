@@ -21,7 +21,7 @@ export const load: PageLoad = async ({ fetch: _fetch, params, depends, route, ur
 	]);
 
 	if (!playlistRes.ok) {
-		throw error(playlistRes.status, 'Failed to load playlist!');
+		error(playlistRes.status, 'Failed to load playlist!');
 	}
 
 	let isFollowing: boolean | null = null;
@@ -41,7 +41,7 @@ export const load: PageLoad = async ({ fetch: _fetch, params, depends, route, ur
 			}).toString()}`
 		);
 		if (!tracksRes.ok) {
-			throw error(tracksRes.status, 'Failed to load playlist!');
+			error(tracksRes.status, 'Failed to load playlist!');
 		}
 		const tracksResJSON = await tracksRes.json();
 		playlistResJSON.tracks = tracksResJSON;

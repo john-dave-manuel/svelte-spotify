@@ -10,7 +10,7 @@ export const GET: RequestHandler = async ({ url, cookies, fetch }) => {
 	const storedChallengeVerifier = cookies.get('spotify_auth_challenge_verifier') || null;
 
 	if (state === null || state !== storedState) {
-		throw error(400, 'State Mismatch!');
+		error(400, 'State Mismatch!');
 	}
 
 	const response = await fetch('https://accounts.spotify.com/api/token', {
@@ -32,13 +32,13 @@ export const GET: RequestHandler = async ({ url, cookies, fetch }) => {
 	const responseJSON = await response.json();
 
 	if (responseJSON.error) {
-		throw error(400, responseJSON.error_description);
+		error(400, responseJSON.error_description);
 	}
 
-	cookies.delete('spotify_auth_state');
-	cookies.delete('spotify_auth_challenge_verifier');
+	/* @migration task: add path argument */ cookies.delete('spotify_auth_state');
+	/* @migration task: add path argument */ cookies.delete('spotify_auth_challenge_verifier');
 	cookies.set('refresh_token', responseJSON.refresh_token, { path: '/' });
 	cookies.set('access_token', responseJSON.access_token, { path: '/' });
 
-	throw redirect(303, '/');
+	redirect(303, '/');
 };

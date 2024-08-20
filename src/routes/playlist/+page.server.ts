@@ -20,18 +20,18 @@ export const actions: Actions = {
 		});
 
 		if (!res.ok) {
-			throw redirect(
-				303,
-				redirectTo
-					? `${redirectTo}?error=${res.statusText}`
-					: `/playlist/${playlist}?error=${res.statusText}`
-			);
+			redirect(
+            				303,
+            				redirectTo
+            					? `${redirectTo}?error=${res.statusText}`
+            					: `/playlist/${playlist}?error=${res.statusText}`
+            			);
 		}
 
 		if (redirectTo) {
-			throw redirect(303, `${redirectTo}?success=Track added successfully!`);
+			redirect(303, `${redirectTo}?success=Track added successfully!`);
 		} else {
-			throw redirect(303, `/playlist/${playlist}?success=Track added successfully!`);
+			redirect(303, `/playlist/${playlist}?success=Track added successfully!`);
 		}
 	}
 };

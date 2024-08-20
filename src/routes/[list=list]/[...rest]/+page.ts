@@ -45,7 +45,7 @@ export const load: PageLoad = async ({ params, fetch: _fetch, url, depends, rout
 		const artistID = rest.split('/')[0];
 		const dataType = rest.split('/')[1];
 		if (!artistID || !['albums', 'appears-on', 'related-artists'].includes(dataType)) {
-			throw error(404, { message: 'Page not found!' });
+			error(404, { message: 'Page not found!' });
 		}
 		const artistInfo = await fetch(`/api/spotify/artists/${artistID}`);
 		const artistInfoJSON: SpotifyApi.SingleArtistResponse = artistInfo.ok
@@ -71,13 +71,13 @@ export const load: PageLoad = async ({ params, fetch: _fetch, url, depends, rout
 	}
 
 	if (!request) {
-		throw error(404, 'Page Not Found!');
+		error(404, 'Page Not Found!');
 	}
 
 	const res = await request;
 
 	if (!res.ok) {
-		throw error(res.status, 'Failed to Load Data!');
+		error(res.status, 'Failed to Load Data!');
 	}
 
 	const resJSON:

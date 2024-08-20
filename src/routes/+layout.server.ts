@@ -34,7 +34,7 @@ export const load: LayoutServerLoad = async ({ cookies, fetch, url }) => {
 		// refresh the token and try again
 		const refreshRes = await fetch('/api/auth/refresh');
 		if (refreshRes.ok) {
-			throw redirect(307, url.pathname);
+			redirect(307, url.pathname);
 		}
 		return {
 			user: null

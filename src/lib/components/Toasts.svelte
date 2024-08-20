@@ -10,7 +10,7 @@
 		{#each $toasts as toast (toast.id)}
 			<div
 				class="toast {toast.type}"
-				transition:fly={{ x: 100, duration: 300 }}
+				transition:fly|global={{ x: 100, duration: 300 }}
 				animate:flip={{ duration: 300 }}
 			>
 				<div class="content" role="status">

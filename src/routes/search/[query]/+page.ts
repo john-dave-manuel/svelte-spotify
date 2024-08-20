@@ -14,7 +14,7 @@ export const load: PageLoad = async ({ fetch, params, depends, route }) => {
 	const resultsRes = await fetchRefresh(fetch, `/api/spotify/search?${searchParams}`);
 
 	if (!resultsRes.ok) {
-		throw error(resultsRes.status, 'Failed to load results!');
+		error(resultsRes.status, 'Failed to load results!');
 	}
 
 	const resultsResJSON: SpotifyApi.SearchResponse = await resultsRes.json();

@@ -43,9 +43,9 @@ export const actions: Actions = {
 		});
 
 		if (!res.ok) {
-			throw redirect(303, `/playlist/${playlist}?error=${res.statusText}`);
+			redirect(303, `/playlist/${playlist}?error=${res.statusText}`);
 		}
 
-		throw redirect(303, `/playlist/${playlist}?success=Track removed successfully!`);
+		redirect(303, `/playlist/${playlist}?success=Track removed successfully!`);
 	}
 };

@@ -23,7 +23,7 @@ export const GET: RequestHandler = async ({ cookies, fetch }) => {
 	if (responseJSON.error) {
 		cookies.delete('refresh_token', { path: '/' });
 		cookies.delete('access_token', { path: '/' });
-		throw error(401, responseJSON.error_description);
+		error(401, responseJSON.error_description);
 	}
 
 	cookies.set('refresh_token', responseJSON.refresh_token, { path: '/' });
